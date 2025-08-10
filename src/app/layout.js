@@ -1,10 +1,7 @@
 import "./globals.css";
 import Providers from "./providers";
 
-export const metadata = {
-  title: "Hook Digital",
-  description: "Panel pengiriman",
-};
+export const metadata = { title: "Hook Digital" };
 
 export default function RootLayout({ children }) {
   return (

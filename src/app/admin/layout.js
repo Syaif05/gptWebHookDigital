@@ -1,19 +1,20 @@
-import Link from "next/link";
 import { getServerSession } from "next-auth";
+import Link from "next/link";
 import { isAllowed } from "@/lib/auth";
+
+export const dynamic = "force-dynamic"; // aman untuk halaman admin
 
 export default async function AdminLayout({ children }) {
   const session = await getServerSession();
+  const email = session?.user?.email;
 
-  if (!session?.user?.email || !isAllowed(session.user.email)) {
+  if (!email || !isAllowed(email)) {
     return (
-      <main className="min-h-screen grid place-items-center p-10">
-        <div className="text-center space-y-4">
-          <p className="text-slate-700">Tidak diizinkan.</p>
-          <Link href="/" className="text-blue-600 underline">
-            Kembali
-          </Link>
-        </div>
+      <main className="p-10 text-center">
+        Tidak diizinkan.{" "}
+        <Link href="/" className="text-blue-600 underline">
+          Kembali
+        </Link>
       </main>
     );
   }
@@ -43,9 +44,7 @@ export default async function AdminLayout({ children }) {
           >
             Riwayat
           </Link>
-          <div className="ml-auto text-sm text-slate-500">
-            {session.user.email}
-          </div>
+          <div className="ml-auto text-sm text-slate-500">{email}</div>
         </div>
       </nav>
       <main className="max-w-6xl mx-auto p-4">{children}</main>
