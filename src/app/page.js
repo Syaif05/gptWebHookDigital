@@ -1,5 +1,6 @@
 "use client";
 import { signIn, useSession } from "next-auth/react";
+import Link from "next/link";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -16,12 +17,12 @@ export default function Home() {
             Login dengan Google
           </button>
         ) : (
-          <a
+          <Link
             href="/admin"
             className="w-full inline-block text-center py-3 rounded-xl bg-blue-600 text-white hover:bg-blue-700"
           >
             Buka Admin
-          </a>
+          </Link>
         )}
       </div>
     </main>
