@@ -1,12 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: { ignoreDuringBuilds: true }, // <— lewati lint saat build prod
-  experimental: {
-    // opsi kamu yang lain
-    allowedDevOrigins: process.env.NEXTAUTH_URL
-      ? [process.env.NEXTAUTH_URL]
-      : [],
-  },
+
   async headers() {
     return [
       {
@@ -23,6 +18,7 @@ const nextConfig = {
       },
     ];
   },
+
   experimental: {
     // hilangkan warning dev saat akses via IP (opsional)
     allowedDevOrigins: process.env.NEXTAUTH_URL
@@ -30,4 +26,5 @@ const nextConfig = {
       : [],
   },
 };
+
 export default nextConfig;
